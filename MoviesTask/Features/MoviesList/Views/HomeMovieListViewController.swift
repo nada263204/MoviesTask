@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Lottie
 
 class HomeMovieListViewController: ViewController {
 
@@ -16,16 +17,19 @@ class HomeMovieListViewController: ViewController {
 
     private let viewModel = MovieViewModel()
     private var cancellables = Set<AnyCancellable>()
+    weak var delegate: MovieDetailsDelegate?
 
     var timer: Timer?
     var currentIndex = 0
     
+    private var emptyAnimationView: LottieAnimationView?
     private var loadingIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
         indicator.color = .white
         indicator.hidesWhenStopped = true
         return indicator
     }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,11 +50,17 @@ class HomeMovieListViewController: ViewController {
         viewModel.$state
             .receive(on: RunLoop.main)
             .sink { [weak self] state in
+                guard let self = self else { return }
                 switch state {
                 case .loading:
-                    self?.loadingIndicator.startAnimating()
-                case .success, .failure:
-                    self?.loadingIndicator.stopAnimating()
+                    self.loadingIndicator.startAnimating()
+                    self.hideEmptyAnimation()
+                case .success:
+                    self.loadingIndicator.stopAnimating()
+                    self.hideEmptyAnimation()
+                case .failure:
+                    self.loadingIndicator.stopAnimating()
+                    self.showEmptyAnimation()
                 case .idle:
                     break
                 }
@@ -73,6 +83,24 @@ class HomeMovieListViewController: ViewController {
                 self?.popularCollectionView.reloadData()
             }
             .store(in: &cancellables)
+    }
+
+    private func showEmptyAnimation() {
+        emptyAnimationView?.removeFromSuperview() 
+
+        let animationView = LottieAnimationView(name: "empty")
+        animationView.frame = view.bounds
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
+        animationView.play()
+
+        view.addSubview(animationView)
+        emptyAnimationView = animationView
+    }
+
+    private func hideEmptyAnimation() {
+        emptyAnimationView?.removeFromSuperview()
+        emptyAnimationView = nil
     }
 
 
@@ -177,7 +205,21 @@ extension HomeMovieListViewController: UICollectionViewDataSource, UICollectionV
         let movie = (collectionView == sliderCollectionView) ? viewModel.movies[indexPath.item] : viewModel.popularMovies[indexPath.item]
         let detailsVC = MovieDetailsViewController(nibName: "MovieDetailsViewController", bundle: nil)
         detailsVC.movie = movie
+        detailsVC.delegate = self
         navigationController?.pushViewController(detailsVC, animated: true)
+    }
+
+}
+
+extension HomeMovieListViewController: MovieDetailsDelegate {
+    func didUpdateFavoriteStatus(for movie: Movie, isFavorite: Bool) {
+        if let index = viewModel.movies.firstIndex(where: { $0.id == movie.id }) {
+            sliderCollectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
+        }
+
+        if let index = viewModel.popularMovies.firstIndex(where: { $0.id == movie.id }) {
+            popularCollectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
+        }
     }
 }
 

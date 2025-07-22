@@ -16,8 +16,14 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var overviewLabel: UILabel!
     @IBOutlet weak var voteAverageLabel: UILabel!
     @IBOutlet weak var originalLanguageLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIImageView!
     
     var movie: Movie!
+    
+    private let favoriteViewModel = FavoriteViewModel()
+    private var isFavorite: Bool = false
+    weak var delegate: MovieDetailsDelegate?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,21 +41,60 @@ class MovieDetailsViewController: UIViewController {
            }
        }
 
-       private func configureUI() {
-           guard let movie = movie else { return }
+    private func configureUI() {
+        guard let movie = movie else { return }
 
-           titleLabel.text = movie.title
-           ratingLabel.text = "Rating: ⭐️ \(movie.rating)"
-           releaseDateLabel.text = "Release Date: \(movie.releaseDate)"
-           overviewLabel.text = movie.overview
-           voteAverageLabel.text = "Vote Count: \(movie.voteCount)"
-           originalLanguageLabel.text = "Language: \(movie.originalLanguage.uppercased())"
+        titleLabel.text = movie.title
+        ratingLabel.text = "Rating: ⭐️ \(movie.rating)"
+        releaseDateLabel.text = "Release Date: \(movie.releaseDate)"
+        overviewLabel.text = movie.overview
+        voteAverageLabel.text = "Vote Count: \(movie.voteCount)"
+        originalLanguageLabel.text = "Language: \(movie.originalLanguage.uppercased())"
 
-           let baseURL = "https://image.tmdb.org/t/p/w500"
-           if let url = URL(string: baseURL + movie.posterPath) {
-               posterImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
-           }
-       }
+        let baseURL = "https://image.tmdb.org/t/p/w500"
+        if let url = URL(string: baseURL + movie.posterPath) {
+            posterImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
+        }
+
+        isFavorite = favoriteViewModel.isFavorite(movie: movie)
+        updateFavoriteIcon()
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(favoriteButtonTapped))
+        favoriteButton.isUserInteractionEnabled = true
+        favoriteButton.addGestureRecognizer(tapGesture)
+    }
+
+    private func updateFavoriteIcon() {
+        let imageName = isFavorite ? "heart.fill" : "heart"
+        favoriteButton.image = UIImage(systemName: imageName)
+    }
+
+    @objc private func favoriteButtonTapped() {
+        guard let movie = movie else { return }
+
+        if isFavorite {
+            let alert = UIAlertController(
+                title: "Remove from Favorites",
+                message: "Are you sure you want to remove this movie from favorites?",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { _ in
+                self.favoriteViewModel.removeFromFavorites(movie: movie)
+                self.isFavorite = false
+                self.updateFavoriteIcon()
+                self.delegate?.didUpdateFavoriteStatus(for: movie, isFavorite: false)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            favoriteViewModel.addToFavorites(movie: movie)
+            isFavorite = true
+            updateFavoriteIcon()
+            delegate?.didUpdateFavoriteStatus(for: movie, isFavorite: true)
+        }
+    }
+
+
 
 
     /*

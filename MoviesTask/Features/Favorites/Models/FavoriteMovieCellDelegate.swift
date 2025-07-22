@@ -10,3 +10,8 @@ import Foundation
 protocol FavoriteMovieCellDelegate: AnyObject {
     func didRequestRemoveFavorite(_ movie: Movie)
 }
+
+
+protocol MovieDetailsDelegate: AnyObject {
+    func didUpdateFavoriteStatus(for movie: Movie, isFavorite: Bool)
+}

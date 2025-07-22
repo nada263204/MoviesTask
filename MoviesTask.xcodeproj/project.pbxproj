@@ -50,6 +50,7 @@
 		22961D262E30184600453DB9 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 22961D252E30184600453DB9 /* Lottie */; };
 		22961D282E30184600453DB9 /* Lottie-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 22961D272E30184600453DB9 /* Lottie-Dynamic */; };
 		22961D2A2E301AB800453DB9 /* logo.json in Resources */ = {isa = PBXBuildFile; fileRef = 22961D292E301AB800453DB9 /* logo.json */; };
+		22961D2C2E30294600453DB9 /* empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 22961D2B2E30294600453DB9 /* empty.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		22961D1E2E2FD08F00453DB9 /* PopularMovieCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMovieCellDelegate.swift; sourceTree = "<group>"; };
 		22961D202E2FDA2B00453DB9 /* MovieStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieStorageManager.swift; sourceTree = "<group>"; };
 		22961D292E301AB800453DB9 /* logo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = logo.json; sourceTree = "<group>"; };
+		22961D2B2E30294600453DB9 /* empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +213,7 @@
 				22961CA72E2EC2A600453DB9 /* LaunchScreen.storyboard */,
 				22961CA52E2EC2A600453DB9 /* Assets.xcassets */,
 				22961D292E301AB800453DB9 /* logo.json */,
+				22961D2B2E30294600453DB9 /* empty.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22961CA92E2EC2A600453DB9 /* LaunchScreen.storyboard in Resources */,
+				22961D2C2E30294600453DB9 /* empty.json in Resources */,
 				22961CFD2E2EC93D00453DB9 /* PopularMovieCell.xib in Resources */,
 				22961CF92E2EC91D00453DB9 /* MovieSliderCell.xib in Resources */,
 				22961D2A2E301AB800453DB9 /* logo.json in Resources */,
