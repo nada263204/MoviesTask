@@ -23,24 +23,31 @@
                             <constraint firstAttribute="width" constant="266" id="yQL-le-aBc"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Black Panther" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JT3-2b-hiC">
-                        <rect key="frame" x="0.0" y="90" width="246" height="37"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Black Panther" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JT3-2b-hiC">
+                        <rect key="frame" x="8" y="89" width="266" height="20.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IUz-TB-sqD">
+                        <rect key="frame" x="6" y="8" width="25" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d5t-TW-sH9">
+                        <rect key="frame" x="236" y="0.0" width="30" height="34.333333333333336"/>
+                        <color key="tintColor" red="0.95088583230000001" green="0.2779477239" blue="0.25256603960000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                        <connections>
+                            <action selector="favoriteButtonTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="3EV-zx-mZY"/>
+                        </connections>
+                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="On March 2, 2022 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNF-cg-rRF">
-                        <rect key="frame" x="0.0" y="129" width="246" height="17"/>
+                        <rect key="frame" x="10" y="128" width="246" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IUz-TB-sqD">
-                        <rect key="frame" x="6" y="8" width="25" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -48,13 +55,30 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
+                <constraint firstItem="JT3-2b-hiC" firstAttribute="top" secondItem="IUz-TB-sqD" secondAttribute="bottom" constant="61" id="251-bo-cIY"/>
                 <constraint firstItem="9tl-B8-4yx" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" id="57r-pW-M7d"/>
+                <constraint firstItem="d5t-TW-sH9" firstAttribute="width" secondItem="9tl-B8-4yx" secondAttribute="width" multiplier="0.112782" id="7Lj-6I-HsJ"/>
                 <constraint firstItem="9tl-B8-4yx" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="Bpo-k4-kKI"/>
+                <constraint firstItem="d5t-TW-sH9" firstAttribute="leading" secondItem="IUz-TB-sqD" secondAttribute="trailing" constant="205" id="CMy-u8-U9w"/>
+                <constraint firstAttribute="trailing" secondItem="JT3-2b-hiC" secondAttribute="trailing" symbolic="YES" id="DP9-Lz-aj4"/>
+                <constraint firstItem="d5t-TW-sH9" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="GRR-Us-ibJ"/>
+                <constraint firstItem="d5t-TW-sH9" firstAttribute="height" secondItem="9tl-B8-4yx" secondAttribute="height" multiplier="0.220085" id="KQG-Ox-Jum"/>
+                <constraint firstItem="d5t-TW-sH9" firstAttribute="trailing" secondItem="9tl-B8-4yx" secondAttribute="trailing" id="LhO-YD-8RH"/>
+                <constraint firstItem="d5t-TW-sH9" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="QyA-ar-nTc"/>
+                <constraint firstAttribute="trailing" secondItem="d5t-TW-sH9" secondAttribute="trailing" id="T4K-9M-UVy"/>
+                <constraint firstAttribute="trailing" secondItem="d5t-TW-sH9" secondAttribute="trailing" id="T4i-Hn-hQU"/>
+                <constraint firstAttribute="trailing" secondItem="d5t-TW-sH9" secondAttribute="trailing" id="YIW-Vs-1Ds"/>
+                <constraint firstItem="d5t-TW-sH9" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="dFZ-ng-Gdc"/>
                 <constraint firstItem="9tl-B8-4yx" firstAttribute="centerY" secondItem="ZTg-uK-7eu" secondAttribute="centerY" constant="-12.5" id="eGG-Bd-DJo"/>
+                <constraint firstItem="JT3-2b-hiC" firstAttribute="top" secondItem="d5t-TW-sH9" secondAttribute="bottom" constant="55.670000000000002" id="fAF-vX-xtR"/>
+                <constraint firstItem="JT3-2b-hiC" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="fjx-ZW-JxN"/>
                 <constraint firstItem="9tl-B8-4yx" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="g55-Jx-7Zk"/>
+                <constraint firstItem="IUz-TB-sqD" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="rHB-4Y-6KN"/>
+                <constraint firstItem="d5t-TW-sH9" firstAttribute="leading" secondItem="IUz-TB-sqD" secondAttribute="trailing" constant="205" id="tS7-Kr-zX3"/>
             </constraints>
             <size key="customSize" width="266" height="156"/>
             <connections>
+                <outlet property="favoriteButton" destination="d5t-TW-sH9" id="lH3-95-58I"/>
                 <outlet property="posterImageView" destination="9tl-B8-4yx" id="otU-Y6-O1n"/>
                 <outlet property="ratingLabel" destination="IUz-TB-sqD" id="ekb-pL-Td3"/>
                 <outlet property="releaseDateLabel" destination="PNF-cg-rRF" id="ije-gq-NiF"/>
@@ -65,5 +89,6 @@
     </objects>
     <resources>
         <image name="Image" width="359" height="218"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
     </resources>
 </document>

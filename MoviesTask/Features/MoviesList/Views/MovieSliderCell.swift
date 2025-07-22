@@ -15,17 +15,29 @@ class MovieSliderCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
+    
+    private var isFavorite: Bool = false
+    private let favoriteViewModel = FavoriteViewModel()
+    private var currentMovie: Movie?
+
     
        
-    func configure(with movie: Movie) {
+    func configure(with movie: Movie, isFavorite: Bool? = nil) {
+        self.currentMovie = movie
+        self.isFavorite = isFavorite ?? favoriteViewModel.isFavorite(movie: movie)
+        updateFavoriteButton()
+
         let baseURL = "https://image.tmdb.org/t/p/w500"
         if let url = URL(string: baseURL + movie.posterPath) {
-            posterImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
+            posterImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "image"))
         }
         titleLabel.text = movie.title
         releaseDateLabel.text = movie.releaseDate
         ratingLabel.text = "⭐️ \(movie.rating)"
     }
+
+
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,5 +49,50 @@ class MovieSliderCell: UICollectionViewCell {
     }
 
 
+    @IBAction func favoriteButtonTapped(_ sender: Any) {
+        guard let movie = currentMovie else { return }
 
+        if isFavorite {
+            if let vc = self.parentViewController {
+                let alert = UIAlertController(
+                    title: "Remove from Favorites",
+                    message: "Are you sure you want to remove this movie from favorites?",
+                    preferredStyle: .alert
+                )
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Remove", style: .destructive, handler: { _ in
+                    self.favoriteViewModel.removeFromFavorites(movie: movie)
+                    self.isFavorite = false
+                    self.updateFavoriteButton()
+                }))
+                vc.present(alert, animated: true, completion: nil)
+            }
+        } else {
+            favoriteViewModel.addToFavorites(movie: movie)
+            isFavorite = true
+            updateFavoriteButton()
+        }
+    }
+
+    
+    private func updateFavoriteButton() {
+        let imageName = isFavorite ? "heart.fill" : "heart"
+        favoriteButton.setImage(UIImage(systemName: imageName), for: .normal)
+    }
+
+    
+}
+
+
+extension UIView {
+    var parentViewController: UIViewController? {
+        var responder: UIResponder? = self
+        while responder != nil {
+            if let vc = responder as? UIViewController {
+                return vc
+            }
+            responder = responder?.next
+        }
+        return nil
+    }
 }

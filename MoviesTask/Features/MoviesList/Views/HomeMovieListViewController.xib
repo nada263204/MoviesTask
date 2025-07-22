@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeMovieListViewController" customModule="MoviesTask" customModuleProvider="target">
             <connections>
+                <outlet property="goToFavoriteScreen" destination="xNB-hE-2cO" id="2BB-eo-vvi"/>
                 <outlet property="popularCollectionView" destination="fBK-rJ-gUu" id="s7n-8H-d7g"/>
                 <outlet property="sliderCollectionView" destination="PMr-gN-Ezh" id="it0-GJ-Nho"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -61,7 +62,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="fBK-rJ-gUu">
-                    <rect key="frame" x="-33" y="505" width="426" height="302"/>
+                    <rect key="frame" x="0.0" y="505" width="393" height="302"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yCz-0W-Dta">

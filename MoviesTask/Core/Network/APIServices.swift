@@ -18,5 +18,13 @@ class MovieAPIService {
             .map { $0.results }
             .eraseToAnyPublisher()
     }
+    
+    func fetchPopularMovies() -> AnyPublisher<[Movie], Error> {
+        NetworkManager.shared
+            .request(.popularMovies, responseType: MovieResponse.self)
+            .map { $0.results }
+            .eraseToAnyPublisher()
+    }
+
 }
 
