@@ -9,9 +9,13 @@ import Foundation
 import Alamofire
 import Combine
 
-class NetworkManager {
-    static let shared = NetworkManager()
 
+protocol NetworkManaging {
+    func request<T: Decodable>(_ endpoint: APIEndpoint, responseType: T.Type) -> AnyPublisher<T, Error>
+}
+
+class NetworkManager: NetworkManaging {
+    static let shared = NetworkManager()
     private init() {}
 
     func request<T: Decodable>(_ endpoint: APIEndpoint, responseType: T.Type) -> AnyPublisher<T, Error> {

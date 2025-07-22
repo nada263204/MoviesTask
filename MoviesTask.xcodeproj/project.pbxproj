@@ -51,6 +51,7 @@
 		22961D282E30184600453DB9 /* Lottie-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 22961D272E30184600453DB9 /* Lottie-Dynamic */; };
 		22961D2A2E301AB800453DB9 /* logo.json in Resources */ = {isa = PBXBuildFile; fileRef = 22961D292E301AB800453DB9 /* logo.json */; };
 		22961D2C2E30294600453DB9 /* empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 22961D2B2E30294600453DB9 /* empty.json */; };
+		22961D302E30353900453DB9 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22961D2E2E30348900453DB9 /* MockNetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,7 @@
 		22961D202E2FDA2B00453DB9 /* MovieStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieStorageManager.swift; sourceTree = "<group>"; };
 		22961D292E301AB800453DB9 /* logo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = logo.json; sourceTree = "<group>"; };
 		22961D2B2E30294600453DB9 /* empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty.json; sourceTree = "<group>"; };
+		22961D2E2E30348900453DB9 /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 		22961CB22E2EC2A700453DB9 /* MoviesTaskTests */ = {
 			isa = PBXGroup;
 			children = (
+				22961D2D2E30346100453DB9 /* Network */,
 				22961CB32E2EC2A700453DB9 /* MoviesTaskTests.swift */,
 			);
 			path = MoviesTaskTests;
@@ -355,6 +358,7 @@
 				22961CDD2E2EC3E500453DB9 /* APIServices.swift */,
 				22961CDF2E2EC3F900453DB9 /* Endpoints.swift */,
 				22961CE12E2EC40600453DB9 /* NetworkManager.swift */,
+				22961D2E2E30348900453DB9 /* MockNetworkManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -384,6 +388,13 @@
 				22961CEF2E2EC4C500453DB9 /* SplashViewController.xib */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		22961D2D2E30346100453DB9 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -557,6 +568,7 @@
 				22961D1D2E2FC88600453DB9 /* FavoriteMovieCellDelegate.swift in Sources */,
 				22961D152E2FABBA00453DB9 /* FavoriteManager.swift in Sources */,
 				22961CF82E2EC91D00453DB9 /* MovieSliderCell.swift in Sources */,
+				22961D302E30353900453DB9 /* MockNetworkManager.swift in Sources */,
 				22961D1F2E2FD08F00453DB9 /* PopularMovieCellDelegate.swift in Sources */,
 				22961CFC2E2EC93D00453DB9 /* PopularMovieCell.swift in Sources */,
 				22961CF42E2EC52000453DB9 /* HomeMovieListViewController.swift in Sources */,

@@ -14,14 +14,18 @@ class MovieViewModel {
     @Published private(set) var state: ViewState = .idle
     @Published private(set) var popularMovies: [Movie] = []
 
-    
+    private let networkManager: NetworkManaging
     private var cancellables = Set<AnyCancellable>()
-    
+
+    init(networkManager: NetworkManaging = NetworkManager.shared) {
+        self.networkManager = networkManager
+    }
+
     func fetchTopMovies2025() {
         state = .loading
         let endpoint = APIEndpoint.topMovies(year: 2025)
 
-        NetworkManager.shared
+        networkManager
             .request(endpoint, responseType: MovieResponse.self)
             .delay(for: .seconds(2), scheduler: DispatchQueue.main)
             .receive(on: DispatchQueue.main)
@@ -38,11 +42,10 @@ class MovieViewModel {
             .store(in: &cancellables)
     }
 
-
     func fetchPopularMovies() {
         state = .loading
 
-        NetworkManager.shared
+        networkManager
             .request(.popularMovies, responseType: MovieResponse.self)
             .delay(for: .seconds(2), scheduler: DispatchQueue.main)
             .receive(on: DispatchQueue.main)
@@ -58,10 +61,8 @@ class MovieViewModel {
             }
             .store(in: &cancellables)
     }
-
-
-
 }
+
 
 
 
