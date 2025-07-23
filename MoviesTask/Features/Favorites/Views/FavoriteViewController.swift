@@ -11,8 +11,12 @@ class FavoriteViewController: UIViewController {
 
     @IBOutlet weak var favoriteCollectionView: UICollectionView!
 
-    private let viewModel = FavoriteViewModel()
+    private var viewModel: FavoriteViewModel!
     private var favoriteMovies: [Movie] = []
+    
+    func setViewModel(_ viewModel: FavoriteViewModel) {
+        self.viewModel = viewModel
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -10,6 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    let homeModuleFactory: HomeModuleFactory = DefaultHomeModuleFactory()
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -19,11 +20,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //guard let _ = (scene as? UIWindowScene) else { return }
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
-            let window = UIWindow(windowScene: windowScene)
-            let splashVC = SplashViewController(nibName: "SplashViewController", bundle: nil)
-            window.rootViewController = splashVC
-            self.window = window
-            window.makeKeyAndVisible()
+        let window = UIWindow(windowScene: windowScene)
+
+        let splashVC = SplashViewController(nibName: "SplashViewController", bundle: nil)
+        splashVC.homeModuleFactory = homeModuleFactory
+
+        window.rootViewController = splashVC
+        self.window = window
+        window.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

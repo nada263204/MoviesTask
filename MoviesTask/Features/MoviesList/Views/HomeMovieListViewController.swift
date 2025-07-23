@@ -14,13 +14,19 @@ class HomeMovieListViewController: ViewController {
     @IBOutlet weak var sliderCollectionView: UICollectionView!
     @IBOutlet weak var popularCollectionView: UICollectionView!
     @IBOutlet weak var goToFavoriteScreen: UIImageView!
+    var movieDetailsFactory: MovieDetailsModuleFactory!
 
-    private let viewModel = MovieViewModel()
+    private var viewModel: MovieViewModel!
     private var cancellables = Set<AnyCancellable>()
     weak var delegate: MovieDetailsDelegate?
 
     var timer: Timer?
     var currentIndex = 0
+    
+    func setViewModel(_ viewModel: MovieViewModel) {
+        self.viewModel = viewModel
+    }
+
     
     private var emptyAnimationView: LottieAnimationView?
     private var loadingIndicator: UIActivityIndicatorView = {
@@ -155,7 +161,7 @@ class HomeMovieListViewController: ViewController {
     }
 
     @objc func favoriteIconTapped() {
-        let favoritesVC = FavoriteViewController(nibName: "FavoriteViewController", bundle: nil)
+        let favoritesVC = DISwinjectContainer.shared.resolve(FavoriteViewController.self)
         favoritesVC.title = "Favorites"
         navigationController?.pushViewController(favoritesVC, animated: true)
     }
@@ -203,10 +209,10 @@ extension HomeMovieListViewController: UICollectionViewDataSource, UICollectionV
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let movie = (collectionView == sliderCollectionView) ? viewModel.movies[indexPath.item] : viewModel.popularMovies[indexPath.item]
-        let detailsVC = MovieDetailsViewController(nibName: "MovieDetailsViewController", bundle: nil)
-        detailsVC.movie = movie
-        detailsVC.delegate = self
-        navigationController?.pushViewController(detailsVC, animated: true)
+        if let detailsVC = movieDetailsFactory?.makeMovieDetailsModule(for: movie) as? MovieDetailsViewController {
+            detailsVC.delegate = self
+            navigationController?.pushViewController(detailsVC, animated: true)
+        }
     }
 
 }

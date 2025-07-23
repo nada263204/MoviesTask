@@ -20,7 +20,7 @@ class MovieDetailsViewController: UIViewController {
     
     var movie: Movie!
     
-    private let favoriteViewModel = FavoriteViewModel()
+    var favoriteViewModel: FavoriteViewModel!
     private var isFavorite: Bool = false
     weak var delegate: MovieDetailsDelegate?
 

@@ -52,6 +52,9 @@
 		22961D2A2E301AB800453DB9 /* logo.json in Resources */ = {isa = PBXBuildFile; fileRef = 22961D292E301AB800453DB9 /* logo.json */; };
 		22961D2C2E30294600453DB9 /* empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 22961D2B2E30294600453DB9 /* empty.json */; };
 		22961D302E30353900453DB9 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22961D2E2E30348900453DB9 /* MockNetworkManager.swift */; };
+		22961D322E30BD7500453DB9 /* DISwinjectContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22961D312E30BD7500453DB9 /* DISwinjectContainer.swift */; };
+		22961D352E30BD9D00453DB9 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 22961D342E30BD9D00453DB9 /* Swinject */; };
+		22961D372E30BD9D00453DB9 /* Swinject-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 22961D362E30BD9D00453DB9 /* Swinject-Dynamic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +118,7 @@
 		22961D292E301AB800453DB9 /* logo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = logo.json; sourceTree = "<group>"; };
 		22961D2B2E30294600453DB9 /* empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty.json; sourceTree = "<group>"; };
 		22961D2E2E30348900453DB9 /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
+		22961D312E30BD7500453DB9 /* DISwinjectContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DISwinjectContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +127,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				22961D262E30184600453DB9 /* Lottie in Frameworks */,
+				22961D372E30BD9D00453DB9 /* Swinject-Dynamic in Frameworks */,
 				22961D092E2EE1F100453DB9 /* SDWebImage in Frameworks */,
+				22961D352E30BD9D00453DB9 /* Swinject in Frameworks */,
 				22961D022E2EDCF800453DB9 /* Alamofire in Frameworks */,
 				22961D0B2E2EE1F100453DB9 /* SDWebImageMapKit in Frameworks */,
 				22961D042E2EDCF800453DB9 /* AlamofireDynamic in Frameworks */,
@@ -377,6 +383,7 @@
 			children = (
 				22961CE72E2EC47E00453DB9 /* Constants.swift */,
 				22961CE92E2EC48900453DB9 /* AppError.swift */,
+				22961D312E30BD7500453DB9 /* DISwinjectContainer.swift */,
 			);
 			path = Utiles;
 			sourceTree = "<group>";
@@ -420,6 +427,8 @@
 				22961D0A2E2EE1F100453DB9 /* SDWebImageMapKit */,
 				22961D252E30184600453DB9 /* Lottie */,
 				22961D272E30184600453DB9 /* Lottie-Dynamic */,
+				22961D342E30BD9D00453DB9 /* Swinject */,
+				22961D362E30BD9D00453DB9 /* Swinject-Dynamic */,
 			);
 			productName = MoviesTask;
 			productReference = 22961C962E2EC2A400453DB9 /* MoviesTask.app */;
@@ -497,6 +506,7 @@
 				22961D002E2EDCF800453DB9 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				22961D072E2EE1F100453DB9 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				22961D242E30184600453DB9 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				22961D332E30BD9D00453DB9 /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			productRefGroup = 22961C972E2EC2A400453DB9 /* Products */;
 			projectDirPath = "";
@@ -569,6 +579,7 @@
 				22961D152E2FABBA00453DB9 /* FavoriteManager.swift in Sources */,
 				22961CF82E2EC91D00453DB9 /* MovieSliderCell.swift in Sources */,
 				22961D302E30353900453DB9 /* MockNetworkManager.swift in Sources */,
+				22961D322E30BD7500453DB9 /* DISwinjectContainer.swift in Sources */,
 				22961D1F2E2FD08F00453DB9 /* PopularMovieCellDelegate.swift in Sources */,
 				22961CFC2E2EC93D00453DB9 /* PopularMovieCell.swift in Sources */,
 				22961CF42E2EC52000453DB9 /* HomeMovieListViewController.swift in Sources */,
@@ -940,6 +951,14 @@
 				minimumVersion = 4.5.2;
 			};
 		};
+		22961D332E30BD9D00453DB9 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -972,6 +991,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 22961D242E30184600453DB9 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = "Lottie-Dynamic";
+		};
+		22961D342E30BD9D00453DB9 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22961D332E30BD9D00453DB9 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+		22961D362E30BD9D00453DB9 /* Swinject-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22961D332E30BD9D00453DB9 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = "Swinject-Dynamic";
 		};
 /* End XCSwiftPackageProductDependency section */
 
