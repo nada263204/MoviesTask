@@ -1,4 +1,4 @@
-# 🎬 iOS Movie Listing App
+# iOS Movie Listing App (iOS Movie Listing Task)
 
 An iOS movie listing app built as part of a technical assessment for Momentum Solutions. The app displays popular and top-rated movies using data from [TMDB](https://www.themoviedb.org/) API.
 
